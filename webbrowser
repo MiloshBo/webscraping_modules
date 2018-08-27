@@ -1,0 +1,25 @@
+# in command prompt as a command line
+python -m webbrowser -t "http://www.python.org"
+
+import webbrowser
+
+browser_path = r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+webbrowser.register('mozzila', None, webbrowser.BackgroundBrowser(browser_path), preferred=True)
+webbrowser.open('http://www.python.org')
+
+print(webbrowser._tryorder)
+
+# opens page in mozzila but only after registration ( code above )
+browser = webbrowser.get('mozzila')
+browser.open('http://www.python.org')
+webbrowser.get('mozzila').open('http://www.python.org') # alternatively without opening variable
+webbrowser.get(using=None).open('http://www.python.org') # return a controller for a default browser
+
+# opens page in default browser Edge anyway
+webbrowser.open('http://www.python.org', new=0, autoraise=True) 
+
+webbrowser.open_new('http://www.python.org')
+webbrowser.open_new_tab('http://www.python.org')
+
+# Exception raised when a browser control error occurs.
+exception webbrowser.Error
