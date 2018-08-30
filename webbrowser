@@ -1,3 +1,4 @@
+# https://docs.python.org/3.7/library/webbrowser.html
 # in command prompt as a command line
 python -m webbrowser -t "http://www.python.org"
 
