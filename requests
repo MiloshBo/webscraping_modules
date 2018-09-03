@@ -1,0 +1,168 @@
+# http://docs.python-requests.org/en/master/user/quickstart/
+import requests
+
+r = requests.get('https://api.github.com/events')
+#print(type(r)) #  Response object called r
+#print(r)
+
+r = requests.post('http://httpbin.org/post', data = {'key':'value'})
+r = requests.put('http://httpbin.org/post', data = {'key': 'value'})
+r = requests.delete('http://httpbin.org/delete')
+r = requests.head('http://httpbin.org/get')
+r = requests.options('http://httpbin.org/get')
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+r = requests.get('http://httpbin.org/get', params=payload)
+#print(r.url)
+payload1 = {'key1': 'value1', 'key2': ['value2', 'value3']}
+r1 = requests.get('http://httpbin.org/get', params=payload)
+#print(r1.url) # outcome differs from documentation
+
+r = requests.get('https://www.nba.com')
+#print(r.text)
+#print(r.content)
+#print(r.encoding)
+r.encoding = 'ISO-8859-1'
+# print(r.encoding)
+
+r = requests.get('https://api.github.com/events')
+#print(r.json())
+#print(r.raise_for_status())
+#print(r.status_code)
+
+r = requests.get('https://api.github.com/events', stream=True)
+#print(r.raw)
+#print(r.raw.read(10))
+
+#  should use a pattern like this to save what is being streamed to a file:
+#with open(filename, 'wb') as fd:
+	#for chunk in r.iter_content(chunk_size=128):
+		#fd.write(chunk)
+		
+url = 'https://api.github.com/some/endpoint'
+headers = {'user-agent': 'my-app/0.0.1'}
+r = requests.get(url, headers=headers)
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+r = requests.post("http://httpbin.org/post", data=payload)
+#print(r.text)
+
+payload_tuples = [('key1', 'value1'), ('key1', 'value2')]
+r1 = requests.post('http://httpbin.org/post', data=payload_tuples)
+payload_dict = {'key1': ['value1', 'value2']}
+r2 = requests.post('http://httpbin.org/post', data=payload_dict)
+#print(r1.text == r2.text)
+
+import json
+#url = 'https://api.github.com/some/endpoint'
+#payload = {'some': 'data'}
+#r = requests.post(url, data=json.dumps(payload))
+
+#url = 'http://httpbin.org/post'
+#files = {'file': open('report.xls', 'rb')}
+#r = requests.post(url, files=files)
+#print(r.text)
+
+#r = requests.get('http://httpbin.org/get')
+#print(r.status_code)
+#print(r.status_code == requests.codes.ok)
+#print(r.raise_for_status)
+
+#bad_r = requests.get('http://httpbin.org/status/pogresno')
+#print(bad_r.raise_for_status())
+
+# print(r.headers)
+# print(r.headers['Content-Type'])
+# print(r.headers.get('content-type'))
+
+#url = 'http://example.com/some/cookie/setting/url'
+#r = requests.get(url)
+#print(r.cookies['example_cookie_name'])
+
+#r = 'http://example.com/some/cookie/setting/url'
+#r = requests.get(url)
+#print(r.cookies['example_cookie_name'])
+
+#url = 'http://httpbin.org/cookies'
+#cookies = dict(cookies_are='working')
+#r = requests.get(url, cookies=cookies)
+#print(r.text)
+
+#jar = requests.cookies.RequestsCookieJar()
+#jar.set('tasy_cookie', 'yum', domain='httpbin.org', path='/cookies')
+#jar.set('gross_cookie', 'blech', domain='httpbin.org', path='/elsewhere')
+#url = 'http:/httpbin.org/cookies'
+#r = requests.get(url, cookies=jar)
+#print(r.text)
+
+#r = requests.get('http://github.com')
+#r.url
+#r.status_code
+#print(r.history)
+
+#r = requests.get('http://github.com', allow_redirects=False)
+#print(r.status_code)
+#print(r.history)
+
+#r = requests.head('http://github.com', allow_redirects=True)
+#print(r.url)
+#print(r.history)
+
+#requests.get('http://github.com', timeout=0.001)
+
+# All exceptions that Requests explicitly raises inherit from
+#requests.exceptions.RequestException
+
+#s = requests.Session()
+#s.get('http://httpbin.org/cookies/set/sessioncookie/123456789')
+#r = s.get('http://httpbin.org/cookies')
+
+r = requests.get('http://en.wikipedia.org/wiki/Monty_Python')
+#print(type(r))
+#print(r.headers)
+print(r.request.headers)
+
+from requests import Request, Session
+s = Session()
+req = Request('POST', url, data=data, headers=headers)
+prepped = req. prepare()
+# do smth with prepped.body
+prepped.body = 'No, I want exactly this as the body.'
+# do smth with prepped.headers
+del prepped.headers['Content-Type']
+resp = s.send(prepped,
+    stream=stream,
+	verify=verify,
+	proxies=proxies,
+	cert=cert,
+	timeout=timeout
+)
+print(resp.status_code)
+
+''' Session-level state such as cookies will not get applied to your request. To get a PreparedRequest with that state applied, replace the call to Request.prepare() with a call to Session.prepare_request()
+'''
+from requests import Request, Session
+s = Session()
+req = Request('GET', url, data=data, headers=headers)
+prepped = s.prepare_request(req)
+# do smth with prepped.body
+prepped.body = 'Seriously, send exactly these bytes.'
+# do smth with prepped.headers
+prepped.headers['Keep-Dead'] = 'parrot'
+resp = s.send(prepped,
+    stream=stream,
+	verify=verify,
+	proxies=proxies,
+	cert=cert,
+	timeout=timeout
+)
+
+print(resp.status_code)
+
+s = Session()
+req = Request('GET', url)
+prepped = s. prepare_request(req)
+# Merge enviroment settings into session
+settings = s.merge_environment_settings(prepped.url, None, None, None, None)
+resp = s.send(prepped, **settings)
+print(resp.status_code)
