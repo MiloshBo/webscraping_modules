@@ -166,3 +166,100 @@ prepped = s. prepare_request(req)
 settings = s.merge_environment_settings(prepped.url, None, None, None, None)
 resp = s.send(prepped, **settings)
 print(resp.status_code)
+
+# Body Content Workflow
+tarball_url = 'https://github.com/requests/requests/tarball/master'
+r = requests.get(tarball_url, stream=True)
+if int(r.headers['content-length']) < TOO_LONG:
+	content = r.content
+    # Response.iter_content() 
+	# Response.iter_lines()
+with requests.get('http://httpbin.org/get', stream=True) as r:
+	# Do things with response here
+	
+# Streaming Uploads
+with open('massive-body', 'rb') as f:
+		requests.post('http://some.url/streamed', data=f)
+
+# Chunk-Encoded Requests
+def gen():
+	yield 'hi'
+	yield 'there'
+requests.post('http://some.url/chunked'. data=gen())
+
+#POST Multiple Multipart-Encoded Files
+<input type="file" name="images multiple="true" required="true"/>
+# ... ( look at documentation )
+
+# {hook_name: callback_function}
+hooks={'response': print_url}
+def print_url(r, *args, **kwargs):
+	print(r.url)
+def record_hook(r, *args, **kwargs):
+	r.hook_called = True
+	return r
+
+requests.get('http://httpbin.org', hooks={'response': print_url})
+r = requests.get('http://httpbin.org', hooks={'response': [print_ulr, record_hook]})
+r.hook_called
+s = requests.Session()
+s.hooks['response'].append(print_url)
+s.get('http://httpbin.org')
+
+from requests.auth import AuthBase
+class PizzaAuth(AuthBase):
+	"""Attaches HTTP Pizza Authentication to the given Request object."""
+	def __init__(self,username):
+		# setup any auth-related data here
+		self.username = username
+		
+	def __call__(self, r):
+		# modify and return the request
+		r.headers['X-Pizza'] = self.username
+		return r 
+requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
+
+import requests, json
+r = requests.get('http://httpbin.org/stream/20', stream=True)
+for line in r.iter_lines():
+	# filter out keep-alive new line
+	if line:
+		decoded_line = line.decode('utf-8')
+		print(json.loads(decoded_line))
+	
+r = requests.get('http://httpbin.org/stream/20', stream=True)
+if r.encoding is None:
+	r.encoding = 'utf-8'
+for line in r.iter_lines(decode_unicode=True):
+	if line:
+		print(json.loads(line))
+lines = r.iter_lines()
+# Save the first line for later or just skipt it
+first_line = next(lines)
+for line in lines:
+	print(line)
+
+# Proxies
+import requests
+
+proxies = {
+  'http': 'http://10.10.1.10:3128',
+  'https': 'http://10.10.1.10:1080',
+}
+requests.get('http://example.org', proxies=proxies)
+
+import requests
+r = requests.get('https://api.github.com/repos/requests/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')
+if r.status_code == requests.codes.ok:
+	print(r.headers['content_type'])
+commit_data = r.json()
+print(commint_data.keys())
+print(commint_data[u'committer'])
+print(commit_data[u'message'])
+verbs = requests.options('http://a-good-website.com/api/cats')
+print(verbs.headers['allow'])
+# ...documentation
+	
+r = requests.get('https://github.com', timeout=5)
+r = requests.get('https://github.com', timeout=(3.05, 27))
+r = requests.get('https://github.com', timeout=None)
