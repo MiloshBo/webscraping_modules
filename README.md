@@ -10,3 +10,9 @@ http://docs.python-requests.org/en/master/
 
 BeautifulSoup:
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/#
+
+
+
+# RAZNI IZVORI
+https://python-forum.io/Thread-Web-Scraping-part-1
+https://python-forum.io/Thread-Web-scraping-part-2
