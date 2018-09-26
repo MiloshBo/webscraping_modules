@@ -1,0 +1,575 @@
+# https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
+ht_doc = '''
+<!DOCTYPE html>
+<html><head><title>The Dormouse's story</title></head>
+<body>
+<p class="title"><b>The Dormouse's story</b></p>
+   
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
+<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+
+<p class="story">...</p> 
+'''
+
+from bs4 import BeautifulSoup
+#soup = BeautifulSoup(ht_doc, 'html.parser')
+#print(soup.prettify())
+
+#print(soup.title)
+#print(soup.title.name)
+#print(soup.title.string)
+#print(soup.title.parent.name)
+#print(soup.p)
+#print(soup.p['class'])
+#print(soup.a)
+#print(soup.find_all('a'))
+#print(soup.find(id="link3"))
+#print(soup.find(id="link3").string)
+#print(soup.find(id="link3").name)
+#print(soup.find(id="link3").parent.name)
+
+#for link in soup.find_all('a'):
+	#print(link.get('href'))
+	
+#print(soup.get_text())
+
+#with open("htmll.html", encoding=utf-8) as fp:
+	#soup = BeautifulSoup(fp)
+	#print(soup.prettify())
+
+soup = BeautifulSoup("<html>data</html>", 'html.parser')
+#print(soup.prettify())
+
+# Tag object
+#soup = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')
+tag = soup.b
+#print(type(tag))
+#print(tag)
+#print(tag.name)
+#print(soup.b.name) #alternatively
+#tag.name = "blockquote"
+#print(tag)
+
+# Attributes
+#soup = BeautifulSoup('<b id="boldest">', 'html.parser')
+#tag = soup.b
+#print(tag['id'])
+#soup = BeautifulSoup('id': 'boldest', 'html.parser') # syntax error
+#print(soup.attrs)
+#tag['id'] = 'verybold'
+#tag['another-attribute'] = 1
+#print(tag)
+#del tag['id']
+#print(tag)
+#print(tag.get('id'))
+
+css_soup = BeautifulSoup('<p class="body"></p>', 'html.parser')
+#print(css_soup.p['class'])
+css_soup = BeautifulSoup('<p class="body strikeout"></p>', 'html.parser')
+#print(css_soup.p['class'])
+id_soup = BeautifulSoup('<p id="my id"></p>', 'html.parser')
+#print(id_soup.p['id'])
+rel_soup = BeautifulSoup('<p>Back to the <a rel="index">homepage</a></p>', 'html.parser')
+#print(rel_soup.a['rel'])
+rel_soup.a['rel'] = ['index', 'contents']
+#print(rel_soup.p)
+#print(id_soup.get_attribute_list('id')#["my id"])
+
+# If you parse a document as XML, there are no multi-valued attributes
+xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml')
+#print(xml_soup.p['class'])
+
+# NavigableString
+soups = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')
+tags = soups.b
+#print(tags.string)
+#print(type(tags.string))
+#unicode_string = unicode(tags.string)
+#print(unicode_string)  # NameError: unicode not defined (?!)
+tags.string.replace_with("No longer bold")
+#print(tags)
+
+#print(soup.name)
+
+# Comment object
+markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
+soup = BeautifulSoup(markup, 'html.parser')
+comment = soup.b.string
+#print(comment)
+#print(type(comment))
+#print(soup.b.prettify())
+from bs4 import CData
+cdata = CData("A CDATA block")
+comment.replace_with(cdata)
+#print(soup.b.prettify())
+
+# Navigating the tree
+html_doc = """
+<html><head><title>The Dormouse's story</title></head>
+<body>
+<p class="title"><b>The Dormouse's story</b></p>
+
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
+<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+
+<p class="story">...</p>
+"""
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+#print(soup.head)
+#print(soup.title)
+#print(soup.body.b)
+#print(soup.a)
+#print(soup.find_all('a'))
+
+head_tag = soup.head
+#print(head_tag.contents)
+#print(soup.head.contents)
+title_tag = head_tag.contents[0]
+#print(title_tag)
+
+#print(len(soup.contents))
+#print(soup.contents[0].name)
+
+text = title_tag.contents[0]
+#print(text.contents) # AttributeError because string doesn't have contents
+
+#for child in title_tag.children:
+	#print(child)
+#for child in soup.head.contents[0].children:
+	#print(child)
+
+#for child in head_tag.descendants:
+	#print(child)
+
+#print(len(list(soup.children)))
+#print(len(list(soup.descendants)))
+
+#print(title_tag.string)
+#print(head_tag.contents)
+#print(head_tag.string)
+
+#print(soup.html.string) # None
+
+#for string in soup.strings:
+	#print(repr(string))
+#for string in soup.stripped_strings:
+	#print(repr(string))
+
+title_tag = soup.title
+#print(title_tag)
+#print(title_tag.parent)
+html_tag = soup.html
+#print(type(html_tag.parent)
+
+link = soup.a
+#print(link)
+#for parent in link.parents:
+	#if parent is None:
+		#print(parent)
+	#else:
+		#print(parent.name)
+
+sibling_soup = BeautifulSoup("<a><b>text1</b><c>text2</c></b></a>", 'html.parser')
+#print(sibling_soup.prettify())
+#print(sibling_soup.b.next_sibling)
+#print(sibling_soup.c.previous_sibling)
+
+link = soup.a
+#print(link)
+#print(link.next_sibling)
+#print(link.next_sibling.next_sibling)
+#for sibling in soup.a.next_siblings:
+	#print(repr(sibling))
+
+last_a_tag = soup.find("a", id="link3")
+#print(last_a_tag)
+#print(last_a_tag.next_sibling)
+
+#for element in last_a_tag.next_elements:
+	#print(repr(element))
+	
+#print(soup.find_all('b'))
+
+import re
+#for tag in soup.find_all(re.compile("^b")):
+	#print(tag.name)
+#for tag in soup.find_all(re.compile("t")):
+	#print(tag.name)
+
+#print(soup.find_all(["a", "b"]))
+
+#for tag in soup.find_all(True):
+	#print(tag.name)
+	
+#def has_class_but_no_id(tag):
+    #return tag.has_attr('class') and not tag.has_attr('id')
+#print(soup.find_all(has_class_but_no_id))
+
+#def not_lacie(href):
+	#return href and not re.compile("lacie").search(href)
+#print(soup.find_all(href=not_lascie))
+
+from bs4 import NavigableString
+#def surrounded_by_strings(tag):
+	#return (isinstance(tag.next_element, NavigableString)) and isinstance(tag.previous_element, NavigableString)
+#for tag in soup.find_all(surrounded_by_strings):
+	#print(tag.name)
+	
+#print(soup.find_all("title"))
+#print(soup.find_all("p", "title"))
+#print(soup.find_all("a"))
+#print(soup.find_all(id="link2"))
+import re
+#print(soup.find(string=re.compile("sisters")))
+#print(soup.find_all(href=re.compile("elsie")))
+#print(soup.find_all(href=re.compile("elsie"), id='link1'))
+
+data_soup = BeautifulSoup('<div data-foo="value">foo!</div>', 'html.parser')
+#print(data_soup.find_all(attrs={"data-foo": "value"}))
+name_soup = BeautifulSoup('<input name="email"/>', 'html.parser')
+#print(name_soup.find_all(attrs={"name": "email"}))
+
+# SEARCHING BY CSS CLASS
+#print(soup.find_all("a", class_="sister"))
+#print(soup.find_all(class_=re.compile("itl")))
+
+#def has_six_characters(css_class):
+	#return css_class is not None and len(css_class) == 6
+#print(soup.find_all(class_=has_six_characters))
+
+css_soup = BeautifulSoup('<p class="body strikeout"></p>', 'html.parser')
+#print(css_soup.find_all("p", class_="strikeout"))
+#print(css_soup.find_all("p", class_="body"))
+#print(css_soup.find_all("p", class_="body strikeout"))
+#print(css_soup.select("p.strikeout.body"))
+#print(soup.find_all("a", attrs={"class": "sister"}))  # alternativa za css_
+
+# THE STRING ARGUMENT
+#print(soup.find_all(string="Elsie"))
+#print(soup.find_all(string=["Tillie", "Elsie", "Lacie"]))
+#print(soup.find_all(string=re.compile("Dormouse")))
+#def is_the_only_string_within_a_tag(s):
+	# Return True if this string is the only child of its parent tag.
+	#return (s == s.parent.string)
+#print(soup.find_all(string=is_the_only_string_within_a_tag))
+#print(soup.find_all("a", string="Elsie"))
+
+#print(soup.find_all("a", limit=2))
+
+#print(soup.html.find_all("title"))
+#print(soup.html.find_all("title", recursive=False))
+
+#print(soup.find_all('title', limit=1)) # returns list and
+#print(soup.find('title'))              # returns single result
+
+#print(soup.head.title)
+#print(soup.find("head").find("title"))
+
+a_string = soup.find(string="Lacie")
+#print(a_string)
+#print(a_string.find_parents("a"))
+#print(a_string.find_parent("p"))
+
+first_link = soup.find("a")
+#print(first_link)
+#print(first_link.find_next_siblings("a"))
+
+last_link = soup.find("a", id="link3")
+#print(last_link)
+#print(last_link.find_previous_siblings("a"))
+#print(last_link.find_previous_sibling("a"))
+first_story_paragraph = soup.find("p", "story")
+#print(first_story_paragraph)
+#print(first_story_paragraph.find_next_sibling("p"))
+
+last_l = soup.find("a", id="link3")
+#print(last_l)
+#print(last_l.find_previous_siblings("a"))
+first_story_p = soup.find("p", "story")
+#print(first_story_p.find_previous_sibling("p"))
+
+first_li = soup.find("a")
+#print(first_li)
+#print(first_li.find_all_next(string=True))
+#print(first_li.find_next("p"))
+#print(first_li.find_next(string=True))
+
+first_lin = soup.find("a")
+#print(first_lin)
+#print(first_lin.find_all_previous("p"))
+#print(first_lin.find_previous("p"))
+#print(first_link.find_previous("title"))
+
+
+# CSS SELECTORS
+#print(soup.select("title"))
+#print(soup.select("p:nth-of-type(3)"))
+#print(soup.select("body a"))
+#print(soup.select("html head title"))  # Find tags beneath other tags
+#print(soup.select("head > title"))      # Find tags directly beneath other tags
+#print(soup.select("p > a"))
+#print(soup.select("p > a:nth-of-type(2)"))
+#print(soup.select("p > #link1"))
+#print(soup.select("body > a"))
+#print(soup.select("#link1 ~ .sister"))
+#print(soup.select("#link1 + .sister"))
+#print(soup.select(".sister"))
+#print(soup.select("[class~=sister]"))
+#print(soup.select("#link1"))
+#print(soup.select("#link1,#link2"))
+#print(soup.select('a[href]'))
+#print(soup.select('a[href="http://example.com/elsie"]'))
+#print(soup.select('a[href^="http://example.com/"]'))
+#print(soup.select('a[href$="tillie"]'))
+#print(soup.select('a[href*=".com/ti"]'))
+
+multilingual_markup = """
+ <p lang="en">Hello</p>
+ <p lang="en-us">Howdy, y'all</p>
+ <p lang="en-gb">Pip-pip, old fruit</p>
+ <p lang="fr">Bonjour mes amis</p>
+"""
+multilingual_soup = BeautifulSoup(multilingual_markup, 'html.parser')
+#print(multilingual_soup.select('p[lang|=en]'))
+
+#print(soup.select_one(".sister"))
+
+# MODIFYING THE TREE
+soup = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')
+tag = soup.find("b")
+tag.name = "blockquote"
+tag['class'] = 'verybold'
+tag['id'] = 1
+#print(tag)
+del tag['class']
+del tag['id']
+#print(tag)
+
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+tag = soup.find("a")
+#print(tag)
+tag.string = "New link text"
+#print(tag)
+
+soup = BeautifulSoup("<a>Foo</a>", 'html.parser')
+soup.a.append(" Bar")
+#print(soup)
+#print(soup.a.contents)
+
+soup = BeautifulSoup("<b></b>", 'html.parser')
+tag = soup.find("b")
+tag.append("Hello")
+#print(tag)
+new_string = NavigableString(" there")
+tag.append(new_string)
+#print(tag)
+#print(tag.contents)
+
+from bs4 import Comment
+new_comment = Comment("Nice to see you.")
+tag.append(new_comment)
+#print(tag)
+#print(tag.contents)
+
+soup = BeautifulSoup("<b></b>", 'html.parser')
+original_tag = soup.find("b")
+new_tag = soup.new_tag("a", href="http://www.example.com")
+original_tag.append(new_tag)
+#print(original_tag)
+new_tag.string = "Link text."
+#print(original_tag)
+
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+tag = soup.find("a")
+#print(tag)
+#print(tag.contents)
+tag.insert(1, "but did not endorse")
+#print(tag)
+
+soup = BeautifulSoup("<b>stop</b>", 'html.parser')
+tag = soup.new_tag("i")
+tag.string = "Don't"
+#print(tag)
+soup.b.string.insert_before(tag)
+#print(soup.b)
+soup.b.i.insert_after(soup.new_string(" ever "))
+#print(soup.b)
+
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+tag = soup.a
+#print(tag)
+tag.clear()
+#print(tag)
+
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+a_tag = soup.find("a")
+#print(a_tag)
+i_tag = soup.i.extract()
+#print(a_tag)
+#print(i_tag)
+my_string = i_tag.string.extract()
+#print(my_string)
+#print(my_string.parent)
+
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+a_tag = soup.a
+soup.i.decompose()
+#print(a_tag)
+
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+a_tag = soup.a
+new_tag = soup.new_tag("b")
+new_tag.string = "example.net"
+a_tag.i.replace_with(new_tag)
+#print(a_tag)
+
+soup = BeautifulSoup("<p>I wish I was bold.</p>", 'html.parser')
+#print(soup.p.string.wrap(soup.new_tag("b")))
+#print(soup.p.wrap(soup.new_tag("div")))
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+a_tag = soup.a
+#print(a_tag)
+a_tag.i.unwrap()
+#print(a_tag)
+
+# OUTPUT
+markup = '<a href="http://example.com/">I linked to <i>example.com</i></a>'
+soup = BeautifulSoup(markup, 'html.parser')
+#print(soup.prettify())
+#print(soup.a.prettify())
+#print(str(soup))
+
+soup = BeautifulSoup("&ldquo;Dammit!&rdquo; he said.", 'html.parser')
+#print(str(soup))
+
+french = "<p>Il a dit &lt;&lt;Sacr&eacute; bleu!&gt;&gt;</p>"
+soup = BeautifulSoup(french, 'html.parser')
+#print(soup.prettify(formatter="minimal"))
+#print(soup.prettify(formatter="html"))
+#print(soup.prettify(formatter=None))
+
+#def uppercase(str):
+	#return str.upper()
+#print(soup.prettify(formatter=uppercase))
+
+#from bs4.dammit import EntitySubstitution
+#def uppercase_and_substitute_html_entities(str):
+	#return EntitySubstitution.substitute_html(str.upper())
+#print(soup.prettify(formatter=uppercase_and_substitute_html_entities))
+
+#from bs4.element import CData
+soup = BeautifulSoup("<a></a>", 'html.parser')
+soup.a.string = CData("one < three")
+#print(soup.a.prettify(formatter="xml"))
+
+markup = '<a href="http://example.com/">\nI linked to <i>example.com</i>\n</a>'
+soup = BeautifulSoup(markup, 'html.parser')
+#print(soup.get_text())
+#print(soup.i.get_text())
+#print(soup.get_text("XX"))
+#print(soup.get_text("XX", strip=True))
+
+#print(soup.original_encoding)
+
+markup = b'''
+ <html>
+  <head>
+   <meta content="text/html; charset=ISO-Latin-1" http-equiv="Content-type" />
+  </head>
+  <body>
+   <p>Sacr\xe9 bleu!</p>
+  </body>
+ </html>
+'''
+soup = BeautifulSoup(markup, 'html.parser')
+#print(soup.prettify)
+#print(soup.prettify("latin-1"))
+#print(soup.p.encode("latin-1"))
+
+from bs4 import UnicodeDammit
+dammit = UnicodeDammit("Sacr\xc3\xa9 bleu!")
+#print(dammit.unicode_markup)
+#print(dammit.original_encoding)
+
+markup = "<p>I want <b>pizza</b> and more <b>pizza</b>!</p>"
+soup = BeautifulSoup(markup, 'html.parser')
+import copy
+p_copy = copy.copy(soup.p)
+#print(p_copy)
+#print(soup.p == p_copy)
+#print(soup.p is p_copy)
+
+from bs4 import SoupStrainer     # SoupStrainer is problematic (forum)
+only_a_tags = SoupStrainer("a")
+only_tags_with_id_link2 = SoupStrainer(id="link2")
+def is_short_string(string):     # problematic function as per snippsat
+    if string:
+        return len(string) < 10
+only_short_strings = SoupStrainer(string=is_short_string)
+html_doc = """
+<html><head><title>The Dormouse's story</title></head>
+<body>
+<p class="title"><b>The Dormouse's story</b></p>
+
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
+<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+
+<p class="story">...</p>
+"""
+#print(BeautifulSoup(html_doc, "html.parser", parse_only = only_a_tags).prettify())
+#print(BeautifulSoup(html_doc, "html.parser", parse_only=only_tags_with_id_link2).prettify())
+#print(BeautifulSoup(html_doc, "html.parser", parse_only=only_short_strings).prettify())
+
+soup = BeautifulSoup(html_doc, 'html.parser')
+#print(soup.find_all(only_short_strings))
+
+# snippsat's function:
+def by_size(words, size):
+	return [word for word in words if len(word) < size] 
+soup = BeautifulSoup(html_doc, 'html.parser')
+words = soup.text.split()
+#sentence = soup.text.split('\n')
+print(by_size(words, 5))
+
+
+#TROUBLESHOOTING
+from bs4.diagnose import diagnose
+with open("htmll.html") as fp:
+	data = fp.read()
+#diagnose(data)
+
+
+
+
+
+# Requests and BS together
+import requests
+from bs4 import BeautifulSoup
+url = 'https://dataquestio.github.io/web-scraping-pages/simple.html'
+url_get = requests.get(url)
+soup = BeautifulSoup(url_get.content, 'html.parser')
+#print(soup.find('title').text)
+
+# To open html file
+#with open("somef.html", encoding=utf-8) as fp:
+	#soup = BeautifulSoup(fp)
+	#print(soup.prettify())
