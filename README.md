@@ -13,6 +13,8 @@ https://www.crummy.com/software/BeautifulSoup/bs4/doc/#
 
 
 
-# RAZNI IZVORI
+# Razni Izvori
+
 https://python-forum.io/Thread-Web-Scraping-part-1
+
 https://python-forum.io/Thread-Web-scraping-part-2
