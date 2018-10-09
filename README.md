@@ -11,6 +11,10 @@ http://docs.python-requests.org/en/master/
 BeautifulSoup:
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/#
 
+CSS selectors:
+https://www.w3schools.com/cssref/css_selectors.asp
+
+
 Selenium with XPath:
 https://selenium-python.readthedocs.io/index.html
 https://www.red-gate.com/simple-talk/dotnet/.net-framework/xpath,-css,-dom-and-selenium-the-rosetta-stone/
