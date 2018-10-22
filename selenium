@@ -300,3 +300,28 @@ browser = webdriver.Firefox(firefox_options=options, capabilities=caps, executab
 browser.get('https://duckduckgo.com')
 logo = browser.find_elements_by_css_selector('#logo_homepage_link')
 print(logo[0].text)
+
+
+# https://docs.seleniumhq.org/docs/03_webdriver.jsp
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+# Create a new instance of the Firefox driver
+driver = webdriver.Firefox()
+# go to the google home page
+driver.get("http://www.google.com")
+# the page is ajaxy so the title is originally this:
+print(driver.title) 
+inputElement = driver.find_element_by_name("q")
+# type in the search
+inputElement.send_keys("cheese!")
+# submit the form ( although gogle automatically searches now without submitting)
+inputElement.submit()
+try:
+	# We have to wait for the page to refresh, the last thing that seems to be updated is the title
+	WebDriverWait(driver, 10).until(EC.title_contains("cheese!"))
+	# You should see "cheese! - Google Seach"
+	print(driver.title)
+finally:
+	driver.quit()
