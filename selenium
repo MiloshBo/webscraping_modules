@@ -92,7 +92,9 @@ driver.get_cookies()
 <a href="http://www.google.com/search?q=cheese">cheese</a>>
 cheese = browser.find_element_by_link_text("cheese")
 <a href="http://www.google.com/search?q=cheese">search for cheese</a>>
-cheese = driver.find_element_by_partial_link_text("cheese")
+cheese = browser.find_element_by_partial_link_text("cheese")
+element = browser.find_element_by_id("element_id")
+element.text
 
 # https://selenium-python.readthedocs.io/locating-elements.html
 
