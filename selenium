@@ -333,3 +333,16 @@ try:
 	print(driver.title)
 finally:
 	driver.quit()
+	
+
+# Cookies
+browser.get("http://www.example.com")
+browser.add_cookie({'name':'key', 'value':'value', 'path':'/'})
+# additional keys that can be passed in are:
+# 'domain' -> String,
+# 'secure' -> Boolean,
+# 'expiry' -> Milliseconds since the Epoch it should expire.
+for cookie in driver.get_cookies():
+	print(f'{cookie['name']}, {cookie['value']}')
+browser.delete_cookie("CookieName")
+browser.delete_all_cookies()
