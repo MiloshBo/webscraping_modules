@@ -25,7 +25,7 @@ https://www.red-gate.com/simple-talk/dotnet/.net-framework/xpath,-css,-dom-and-s
 
 lxml:
 https://lxml.de/tutorial.html
-#http://stanford.edu/~mgorkove/cgi-bin/rpython_tutorials/webscraping_with_lxml.php
+http://stanford.edu/~mgorkove/cgi-bin/rpython_tutorials/webscraping_with_lxml.php
 
 
 
