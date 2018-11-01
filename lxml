@@ -1,0 +1,41 @@
+#http://stanford.edu/~mgorkove/cgi-bin/rpython_tutorials/webscraping_with_lxml.php
+from lxml import html
+link = "http://sdirwmp.org/contact-us"
+response = requests.get(link, allow_redirect=False) 
+sourceCode = response.content   # get string of source code from response
+htmlElem = html.document_fromstring(sourceCode)   # make HTML element object
+
+# example
+tdElems = htmlElem.cssselect("valign=top")  # list of all td elems
+for elem in tdElems:
+	text = elem.text_content()  # text inside each td elem
+	
+tdElems = htmlElem.cssselect("valign=top")[0] #first of td elem
+text = elem.text_content()
+splitText = text.split("\n")  #returns list of text in between "\n" chars
+print(splitText)
+
+csvFilename = "namesAndPhones.csv"  # what name you want to save your csv file as
+csv = open(csvFilename, "w")  # create or open csv, "w" to write things
+colNames = "Name, Phone\n"  # column titles
+csv.write(colName)
+tdElems = htmlElem.cssselect("[valign=top]")  # list of all td elems
+for elem in tdElems:
+	 text = elem.text_content()  # text inside each td elem
+	 splitText = text.split("\r\n")  # returns list of text between "\r\n" chars
+	 name = splitText[2].strip()  # get name and remove whitespace
+	 phone = splitText[-3].strip()  # get phone number and remove whitespace
+	 csv.write(name + "," + phone + "," "\n")  # write to csv
+	
+
+base_href = "http://www.sandag.org"  # what you need to add to the links to make them   #absoulte
+htmlElem.make_links_absolute(base_href, resolve_base_href=True)
+import urlib
+numPdf = 0  # number to add to the download filename of each pdf to make it unique
+for elem in htmlElem.iterlinks(): # for each tuple in the generator
+    link = elem[2]  # get the link which is at index 2
+	  fileExtension = link.split(".")[-1]  # split link into a list by "." and get the last element, which is the file extention
+	  if fileExtention == "pdf":
+		   downloadDir = f'pdf{numPdf}.pdf'
+		   urllib.request.urlretrieve(link, downloadDir)  # download the pdf
+	     numPdf +=1 
