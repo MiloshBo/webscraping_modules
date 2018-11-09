@@ -1,4 +1,7 @@
 # https://selenium-python.readthedocs.io/getting-started.html
+# https://www.guru99.com/xpath-selenium.html
+# https://www.w3schools.com/xml/xpath_intro.asp
+# http://www.zvon.org/comp/r/tut-XPath_1.html
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
