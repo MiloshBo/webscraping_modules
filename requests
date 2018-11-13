@@ -114,10 +114,10 @@ import json
 #requests.exceptions.RequestException
 examples:
 try:
-	html = requests.get("http://pythonscraping.com/pages/page1.html")
-	print(html.text)
-except requests.exceptions.RequestException as e:
-	 print(e)
+	r = requests.get('http://www.google.com/nothere')
+	r.raise_for_status()
+except requests.exceptions.HTTPError as err:
+	print(err)
 
 
 
