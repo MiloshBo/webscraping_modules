@@ -575,6 +575,8 @@ soup = BeautifulSoup(url_get.content, 'html.parser')
 	print(soup.prettify())
 
 # to extract names in text
+#findAll(tag, attributes, recursive, text, limit, keywords)
+#find(tag, attributes, recursive, text, keywords)
 html = requests.get("http://www.pythonscraping.com/pages/warandpeace.html")
 bsObj = BeautifulSoup(html.content, 'html.parser')
 nameList = bsObj.findAll("span", {"class":"green"})
