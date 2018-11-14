@@ -16,96 +16,96 @@ and they lived at the bottom of a well.</p>
 '''
 
 from bs4 import BeautifulSoup
-#soup = BeautifulSoup(ht_doc, 'html.parser')
-#print(soup.prettify())
+soup = BeautifulSoup(ht_doc, 'html.parser')
+print(soup.prettify())
 
-#print(soup.title)
-#print(soup.title.name)
-#print(soup.title.string)
-#print(soup.title.parent.name)
-#print(soup.p)
-#print(soup.p['class'])
-#print(soup.a)
-#print(soup.find_all('a'))
-#print(soup.find(id="link3"))
-#print(soup.find(id="link3").string)
-#print(soup.find(id="link3").name)
-#print(soup.find(id="link3").parent.name)
+print(soup.title)
+print(soup.title.name)
+print(soup.title.string)
+print(soup.title.parent.name)
+print(soup.p)
+print(soup.p['class'])
+print(soup.a)
+print(soup.find_all('a'))
+print(soup.find(id="link3"))
+print(soup.find(id="link3").string)
+print(soup.find(id="link3").name)
+print(soup.find(id="link3").parent.name)
 
-#for link in soup.find_all('a'):
-	#print(link.get('href'))
+for link in soup.find_all('a'):
+	print(link.get('href'))
 	
-#print(soup.get_text())
+print(soup.get_text())
 
-#with open("htmll.html", encoding=utf-8) as fp:
-	#soup = BeautifulSoup(fp)
-	#print(soup.prettify())
+with open("htmll.html", encoding=utf-8) as fp:
+	soup = BeautifulSoup(fp)
+	print(soup.prettify())
 
 soup = BeautifulSoup("<html>data</html>", 'html.parser')
-#print(soup.prettify())
+print(soup.prettify())
 
 # Tag object
-#soup = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')
+soup = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')
 tag = soup.b
-#print(type(tag))
-#print(tag)
-#print(tag.name)
-#print(soup.b.name) #alternatively
-#tag.name = "blockquote"
-#print(tag)
+print(type(tag))
+print(tag)
+print(tag.name)
+print(soup.b.name) #alternatively
+tag.name = "blockquote"
+print(tag)
 
 # Attributes
-#soup = BeautifulSoup('<b id="boldest">', 'html.parser')
-#tag = soup.b
-#print(tag['id'])
-#soup = BeautifulSoup('id': 'boldest', 'html.parser') # syntax error
-#print(soup.attrs)
-#tag['id'] = 'verybold'
-#tag['another-attribute'] = 1
-#print(tag)
-#del tag['id']
-#print(tag)
-#print(tag.get('id'))
+soup = BeautifulSoup('<b id="boldest">', 'html.parser')
+tag = soup.b
+print(tag['id'])
+soup = BeautifulSoup('id': 'boldest', 'html.parser') # syntax error
+print(soup.attrs)
+tag['id'] = 'verybold'
+tag['another-attribute'] = 1
+print(tag)
+del tag['id']
+print(tag)
+print(tag.get('id'))
 
 css_soup = BeautifulSoup('<p class="body"></p>', 'html.parser')
-#print(css_soup.p['class'])
+print(css_soup.p['class'])
 css_soup = BeautifulSoup('<p class="body strikeout"></p>', 'html.parser')
-#print(css_soup.p['class'])
+print(css_soup.p['class'])
 id_soup = BeautifulSoup('<p id="my id"></p>', 'html.parser')
-#print(id_soup.p['id'])
+print(id_soup.p['id'])
 rel_soup = BeautifulSoup('<p>Back to the <a rel="index">homepage</a></p>', 'html.parser')
-#print(rel_soup.a['rel'])
+print(rel_soup.a['rel'])
 rel_soup.a['rel'] = ['index', 'contents']
-#print(rel_soup.p)
-#print(id_soup.get_attribute_list('id')#["my id"])
+print(rel_soup.p)
+print(id_soup.get_attribute_list('id')#["my id"])
 
 # If you parse a document as XML, there are no multi-valued attributes
 xml_soup = BeautifulSoup('<p class="body strikeout"></p>', 'xml')
-#print(xml_soup.p['class'])
+print(xml_soup.p['class'])
 
 # NavigableString
 soups = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')
 tags = soups.b
-#print(tags.string)
-#print(type(tags.string))
-#unicode_string = unicode(tags.string)
-#print(unicode_string)  # NameError: unicode not defined (?!)
+print(tags.string)
+print(type(tags.string))
+unicode_string = unicode(tags.string)
+print(unicode_string)  # NameError: unicode not defined (?!)
 tags.string.replace_with("No longer bold")
-#print(tags)
+print(tags)
 
-#print(soup.name)
+print(soup.name)
 
 # Comment object
 markup = "<b><!--Hey, buddy. Want to buy a used parser?--></b>"
 soup = BeautifulSoup(markup, 'html.parser')
 comment = soup.b.string
-#print(comment)
-#print(type(comment))
-#print(soup.b.prettify())
+print(comment)
+print(type(comment))
+print(soup.b.prettify())
 from bs4 import CData
 cdata = CData("A CDATA block")
 comment.replace_with(cdata)
-#print(soup.b.prettify())
+print(soup.b.prettify())
 
 # Navigating the tree
 html_doc = """
@@ -124,99 +124,99 @@ and they lived at the bottom of a well.</p>
 from bs4 import BeautifulSoup
 soup = BeautifulSoup(html_doc, 'html.parser')
 
-#print(soup.head)
-#print(soup.title)
-#print(soup.body.b)
-#print(soup.a)
-#print(soup.find_all('a'))
+print(soup.head)
+print(soup.title)
+print(soup.body.b)
+print(soup.a)
+print(soup.find_all('a'))
 
 head_tag = soup.head
-#print(head_tag.contents)
-#print(soup.head.contents)
+print(head_tag.contents)
+print(soup.head.contents)
 title_tag = head_tag.contents[0]
-#print(title_tag)
+print(title_tag)
 
-#print(len(soup.contents))
-#print(soup.contents[0].name)
+print(len(soup.contents))
+print(soup.contents[0].name)
 
 text = title_tag.contents[0]
-#print(text.contents) # AttributeError because string doesn't have contents
+print(text.contents) # AttributeError because string doesn't have contents
 
-#for child in title_tag.children:
-	#print(child)
-#for child in soup.head.contents[0].children:
-	#print(child)
+for child in title_tag.children:
+	print(child)
+for child in soup.head.contents[0].children:
+	print(child)
 
-#for child in head_tag.descendants:
-	#print(child)
+for child in head_tag.descendants:
+	print(child)
 
-#print(len(list(soup.children)))
-#print(len(list(soup.descendants)))
+print(len(list(soup.children)))
+print(len(list(soup.descendants)))
 
-#print(title_tag.string)
-#print(head_tag.contents)
-#print(head_tag.string)
+print(title_tag.string)
+print(head_tag.contents)
+print(head_tag.string)
 
-#print(soup.html.string) # None
+print(soup.html.string) # None
 
-#for string in soup.strings:
-	#print(repr(string))
-#for string in soup.stripped_strings:
-	#print(repr(string))
+for string in soup.strings:
+	print(repr(string))
+for string in soup.stripped_strings:
+	print(repr(string))
 
 title_tag = soup.title
-#print(title_tag)
-#print(title_tag.parent)
+print(title_tag)
+print(title_tag.parent)
 html_tag = soup.html
-#print(type(html_tag.parent)
+print(type(html_tag.parent)
 
 link = soup.a
-#print(link)
-#for parent in link.parents:
-	#if parent is None:
-		#print(parent)
-	#else:
-		#print(parent.name)
+print(link)
+for parent in link.parents:
+	if parent is None:
+		print(parent)
+	else:
+		print(parent.name)
 
 sibling_soup = BeautifulSoup("<a><b>text1</b><c>text2</c></b></a>", 'html.parser')
-#print(sibling_soup.prettify())
-#print(sibling_soup.b.next_sibling)
-#print(sibling_soup.c.previous_sibling)
+print(sibling_soup.prettify())
+print(sibling_soup.b.next_sibling)
+print(sibling_soup.c.previous_sibling)
 
 link = soup.a
-#print(link)
-#print(link.next_sibling)
-#print(link.next_sibling.next_sibling)
-#for sibling in soup.a.next_siblings:
-	#print(repr(sibling))
+print(link)
+print(link.next_sibling)
+print(link.next_sibling.next_sibling)
+for sibling in soup.a.next_siblings:
+	print(repr(sibling))
 
 last_a_tag = soup.find("a", id="link3")
-#print(last_a_tag)
-#print(last_a_tag.next_sibling)
+print(last_a_tag)
+print(last_a_tag.next_sibling)
 
-#for element in last_a_tag.next_elements:
+for element in last_a_tag.next_elements:
 	#print(repr(element))
 	
-#print(soup.find_all('b'))
+print(soup.find_all('b'))
 
 import re
-#for tag in soup.find_all(re.compile("^b")):
-	#print(tag.name)
-#for tag in soup.find_all(re.compile("t")):
-	#print(tag.name)
+for tag in soup.find_all(re.compile("^b")):
+	print(tag.name)
+for tag in soup.find_all(re.compile("t")):
+	print(tag.name)
 
-#print(soup.find_all(["a", "b"]))
+print(soup.find_all(["a", "b"]))
 
-#for tag in soup.find_all(True):
-	#print(tag.name)
+for tag in soup.find_all(True):
+	print(tag.name)
 	
-#def has_class_but_no_id(tag):
-    #return tag.has_attr('class') and not tag.has_attr('id')
-#print(soup.find_all(has_class_but_no_id))
+def has_class_but_no_id(tag):
+    return tag.has_attr('class') and not tag.has_attr('id')
+print(soup.find_all(has_class_but_no_id))
 
-#def not_lacie(href):
-	#return href and not re.compile("lacie").search(href)
-#print(soup.find_all(href=not_lascie))
+def not_lacie(href):
+	return href and not re.compile("lacie").search(href)
+print(soup.find_all(href=not_lascie))
 
 from bs4 import NavigableString
 #def surrounded_by_strings(tag):
