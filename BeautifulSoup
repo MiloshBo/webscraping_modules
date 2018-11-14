@@ -573,3 +573,10 @@ soup = BeautifulSoup(url_get.content, 'html.parser')
 #with open("somef.html", encoding=utf-8) as fp:
 	soup = BeautifulSoup(fp)
 	print(soup.prettify())
+
+# to extract names in text
+html = requests.get("http://www.pythonscraping.com/pages/warandpeace.html")
+bsObj = BeautifulSoup(html.content, 'html.parser')
+nameList = bsObj.findAll("span", {"class":"green"})
+for name in nameList:
+	print(name.get_text())
