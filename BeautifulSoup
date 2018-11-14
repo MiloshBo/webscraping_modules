@@ -581,3 +581,4 @@ nameList = bsObj.findAll("span", {"class":"green"})
 for name in nameList:
 	print(name.get_text())
 nameL = bsOjb.findAll("span", {"class":{"green", "red"}})
+nameList = bsObj.findAll(text="the prince"),    print(len(nameList))
