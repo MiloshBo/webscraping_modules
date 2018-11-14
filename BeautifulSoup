@@ -571,5 +571,5 @@ soup = BeautifulSoup(url_get.content, 'html.parser')
 
 # To open html file
 #with open("somef.html", encoding=utf-8) as fp:
-	#soup = BeautifulSoup(fp)
-	#print(soup.prettify())
+	soup = BeautifulSoup(fp)
+	print(soup.prettify())
