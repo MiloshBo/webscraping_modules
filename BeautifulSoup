@@ -309,6 +309,11 @@ first_lin = soup.find("a")
 #print(first_lin.find_previous("p"))
 #print(first_link.find_previous("title"))
 
+html = requests.get("http://www.pythonscraping.com/pages/page3.html")
+bsObj = BeautifulSoup(html.content, 'html.parser')
+for child in bsObj.find("table", {"id": "giftList"}).children:
+	print(child)
+
 
 # CSS SELECTORS
 #print(soup.select("title"))
