@@ -580,3 +580,4 @@ bsObj = BeautifulSoup(html.content, 'html.parser')
 nameList = bsObj.findAll("span", {"class":"green"})
 for name in nameList:
 	print(name.get_text())
+nameL = bsOjb.findAll("span", {"class":{"green", "red"}})
