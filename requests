@@ -1,4 +1,6 @@
 # http://docs.python-requests.org/en/master/user/quickstart/
+# http://dev.mobify.com/blog/http-requests-are-hard/     
+
 import requests
 
 r = requests.get('https://api.github.com/events')
