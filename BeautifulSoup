@@ -603,3 +603,6 @@ soup = BeautifulSoup(html.content, 'html.parser')
 red_text = soup.find_all('span', class_="red")
 print(red_text)
 print(red_text[3].text)
+
+# lambda
+print(bsObj.find_all(lambda tag: len(tag.attrs) == 2))
