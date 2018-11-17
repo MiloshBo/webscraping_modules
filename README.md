@@ -36,3 +36,5 @@ http://stanford.edu/~mgorkove/cgi-bin/rpython_tutorials/webscraping_with_lxml.ph
 https://python-forum.io/Thread-Web-Scraping-part-1
 
 https://python-forum.io/Thread-Web-scraping-part-2
+
+books: Web Scraping with Python by Ryan Mitchell
