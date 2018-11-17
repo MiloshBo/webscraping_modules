@@ -584,6 +584,7 @@ soup = BeautifulSoup(url_get.content, 'html.parser')
 # to extract names in text
 #findAll(tag, attributes, recursive, text, limit, keywords)
 #find(tag, attributes, recursive, text, keywords)
+#find_all
 html = requests.get("http://www.pythonscraping.com/pages/warandpeace.html")
 bsObj = BeautifulSoup(html.content, 'html.parser')
 nameList = bsObj.findAll("span", {"class":"green"})
@@ -591,3 +592,14 @@ for name in nameList:
 	print(name.get_text())
 nameL = bsOjb.findAll("span", {"class":{"green", "red"}})
 nameList = bsObj.findAll(text="the prince"),    print(len(nameList))
+html = requests.get("http://www.pythonscraping.com/pages/page3.html")
+bsObj = BeautifulSoup(html.content, 'html.parser')
+for child in bsObj.find("table", {"id": "giftList"}).children:
+	print(child)
+for sibling in bsObj.find("table",{"id":"giftList"}).tr.next_siblings:
+	print(sibling)
+html = requests.get("http://www.pythonscraping.com/pages/warandpeace.html")
+soup = BeautifulSoup(html.content, 'html.parser')
+red_text = soup.find_all('span', class_="red")
+print(red_text)
+print(red_text[3].text)
