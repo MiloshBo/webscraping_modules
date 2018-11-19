@@ -1,5 +1,6 @@
 # https://automatetheboringstuff.com/chapter7/
-https://developers.google.com/edu/python/regular-expressions
+# https://developers.google.com/edu/python/regular-expressions
+# https://www.regexpal.com/index.php
 
 # <img src="../img/gifts/img3.jpg">
 import requests
