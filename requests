@@ -316,3 +316,11 @@ print(verbs.headers['allow'])
 r = requests.get('https://github.com', timeout=5)
 r = requests.get('https://github.com', timeout=(3.05, 27))
 r = requests.get('https://github.com', timeout=None)
+
+
+# utils for parsing url
+url = 'http://www.cwi.nl:80/%7Eguido/Python.html'
+u = requests.utils.urlparse(url)
+print(u)
+print(u.scheme)
+print(u.netloc)
