@@ -13,6 +13,9 @@ r = requests.delete('http://httpbin.org/delete')
 r = requests.head('http://httpbin.org/get')
 r = requests.options('http://httpbin.org/get')
 
+# help is used to explain method of modul.
+help(requests.utils)
+
 payload = {'key1': 'value1', 'key2': 'value2'}
 r = requests.get('http://httpbin.org/get', params=payload)
 #print(r.url)
