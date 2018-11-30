@@ -327,3 +327,4 @@ u = requests.utils.urlparse(url)
 print(u)
 print(u.scheme)
 print(u.netloc)
+includeUrl = requests.utils.urlparse(includeUrl).scheme+"://"+requests.utils.urlparse(includeUrl).netloc
