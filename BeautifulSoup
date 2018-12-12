@@ -630,7 +630,7 @@ import requests, os
 from bs4 import BeautifulSoup
 html = requests.get("http://www.pythonscraping.com")
 bsObj = BeautifulSoup(html.content, 'html.parser')
-image_location = bsObj.find("a", {"id":"logo"}).find("img")["src"]
+image_location = bsObj.find("a", id='logo').find("img")["src"]
 image_name = os.path.basename(image_location)
 with open(image_name, 'wb') as out_file:
 	out_file.write(requests.get(image_location).content)
