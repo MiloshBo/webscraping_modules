@@ -634,3 +634,28 @@ image_location = bsObj.find("a", id='logo').find("img")["src"]
 image_name = os.path.basename(image_location)
 with open(image_name, 'wb') as out_file:
 	out_file.write(requests.get(image_location).content)
+	
+
+# download images from a web page
+import requests
+from bs4 import BeautifulSoup
+from urlib.requests import urlopen, urlretrieve
+
+url = "http://www.pythonscraping.com"
+resp = requests.get(url)
+soup = BeautifulSoup(resp.content, 'html.parser')
+sub_urls = list({url + a["href"] for a in soup.find_all("a") if a["href"].startswith("/")})
+img_urls = list({img["src"] for img in soup.find_all("img")})
+
+with open("internal_links.txt", "w") as wf:
+	for url in sub_urls:
+		wf.write(url + "\n")
+
+for url in img_urls:
+	resp = requests.get(url)
+	filename = url.rpartition("/")[-1]
+	with open(filename, "wb") as wf:
+		wf.write(resp.content)
+# alternativno za download slika		
+for url in img_urls:
+	urlretrieve(url, url.rpartition("/")[-1])
