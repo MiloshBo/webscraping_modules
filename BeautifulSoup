@@ -650,7 +650,6 @@ img_urls = list({img["src"] for img in soup.find_all("img")})
 with open("internal_links.txt", "w") as wf:
 	for url in sub_urls:
 		wf.write(url + "\n")
-
 for url in img_urls:
 	resp = requests.get(url)
 	filename = url.rpartition("/")[-1]
