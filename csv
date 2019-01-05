@@ -1,3 +1,6 @@
+# https://docs.python.org/3.4/library/csv.html
+# https://automatetheboringstuff.com/chapter14/
+
 import csv
 
 exampleFile = open('example.csv')
