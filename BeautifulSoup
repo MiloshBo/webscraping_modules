@@ -658,3 +658,17 @@ for url in img_urls:
 # alternativno za download slika		
 for url in img_urls:
 	urlretrieve(url, url.rpartition("/")[-1])
+
+# text
+textPage = requests.get("http://www.pythonscraping.com/pages/warandpeace/chapter1.txt")
+print(textPage.content)
+
+txt_page = requests.get("http://www.pythonscraping.com/pages/warandpeace/chapter1-ru.txt")
+print(txt_page.content.decode('utf-8')[:150])
+
+html = requests.get("http://en.wikipedia.org/wiki/Python_(programming_language)")
+bsObj = BeautifulSoup(html.content, 'html.parser')
+content = bsObj.find("div", {"id": "mw-content-text"}).get_text()
+content = bytes(content, "UTF-8")
+content = content.decode("UTF-8")
+print(content)
