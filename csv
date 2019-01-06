@@ -1,5 +1,6 @@
 # https://docs.python.org/3.4/library/csv.html
 # https://automatetheboringstuff.com/chapter14/
+# https://docs.python.org/3/library/io.html
 
 import csv
 
@@ -98,3 +99,13 @@ try:
 			writer.writerow(csvRow)
 finally:
 csvFile.close()
+
+
+# io - as a string and wrap it in an object that allows Python to treat it like a
+file, without ever actually saving the file.
+import io 	
+data = requests.get("http://pythonscraping.com/files/MontyPythonAlbums.csv").content.decode('ascii', 'ignore')
+dataFile = io.StringIO(data)
+csvReader = csv.reader(dataFile)
+for row in csvReader:
+	print(row)
