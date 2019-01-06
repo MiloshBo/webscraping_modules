@@ -102,7 +102,7 @@ csvFile.close()
 
 
 # io - as a string and wrap it in an object that allows Python to treat it like a
-file, without ever actually saving the file.
+#file, without ever actually saving the file.
 import io 	
 data = requests.get("http://pythonscraping.com/files/MontyPythonAlbums.csv").content.decode('ascii', 'ignore')
 dataFile = io.StringIO(data)
