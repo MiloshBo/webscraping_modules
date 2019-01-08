@@ -26,6 +26,12 @@ with open('eggs.csv', 'w', newline='') as csvfile:
     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
 	spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
 
+with open('names.csv', newline='') as csvfile:
+	reader = csv.DictReader(csvfile)
+	for row in reader:
+		print(row['first_name'], row['last_name'])
+print(row)
+
 
 outputFile = open('output.csv', 'w', newline='')
 outputWriter = csv.writer(outputFile)
