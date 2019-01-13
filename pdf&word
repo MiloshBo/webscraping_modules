@@ -1,5 +1,6 @@
 # https://automatetheboringstuff.com/chapter13/
 # https://pythonhosted.org/PyPDF2/index.html
+# https://media.readthedocs.org/pdf/pdfminer-docs/latest/pdfminer-docs.pdf
 
 import PyPDF2
 
