@@ -1,6 +1,8 @@
 # https://automatetheboringstuff.com/chapter13/
 # https://pythonhosted.org/PyPDF2/index.html
 # https://media.readthedocs.org/pdf/pdfminer-docs/latest/pdfminer-docs.pdf
+# https://textract.readthedocs.io/en/latest/
+# https://stackoverflow.com/questions/34837707/how-to-extract-text-from-a-pdf-fi
 
 import PyPDF2
 
