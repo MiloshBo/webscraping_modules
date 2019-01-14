@@ -69,3 +69,14 @@ for pageNum in range(pdfReader.numPages):
 pdfWriter.encrypt('swordwish')
 resultPdf = open('encryptedminutes.pdf', 'wb')
 pdfWriter.write(resultPdf)
+
+# reversre order of pages
+pdfFileObj = open('meetingminutes.pdf', 'rb')
+pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+pdfWriter = PyPDF2.PdfFileWriter() 
+for pageNum in range(pdfReader.numPages - 1, -1, -1):
+	pageObj = pdfReader.getPage(pageNum)
+	pdfWriter.addPage(pageObj)
+pdfOutputFile = open('reverse.pdf', 'wb')
+pdfWriter.write(pdfOutputFile)
+pdfOutputFile.close()
