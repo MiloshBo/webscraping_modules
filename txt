@@ -1,0 +1,9 @@
+List = open("filename.txt").readlines()  # has '\n' character after each line, better option is:
+list = open("filename.txt").read().splitlines()
+
+# takes a txt file that is a dictionary ( each word is one line )
+helloDict = open('dictionary.txt')
+helloDictCont = helloDict.read().splitlines()
+liDict = []
+for word in helloDictCont:
+	liDict.append(word)
