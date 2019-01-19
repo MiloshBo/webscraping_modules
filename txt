@@ -1,6 +1,16 @@
 List = open("filename.txt").readlines()  # has '\n' character after each line, better option is:
 list = open("filename.txt").read().splitlines()
 
+# If you want a list of lists of each line split by comma
+l = []
+for line in in_file:
+    l.append(line.split(','))
+# You'll get a newline on each record. If you don't want that:
+l = []
+for line in in_file:
+    l.append(line.rstrip().split(','))
+
+
 # takes a txt file that is a dictionary ( each word is one line )
 helloDict = open('dictionary.txt')
 helloDictCont = helloDict.read().splitlines()
