@@ -111,9 +111,9 @@ print(pdfReader2.isEncrypted)
      
 for word in liDict:
     if pdfReader2.decrypt(word) == 1:
+        print('The correct PWD as upper case: ' + word)
         break
-        print(word)
     elif pdfReader2.decrypt(word.lower()) == 1:
+        print('The correct PWD as lower case: ' + word)
         break
-        print(word)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
