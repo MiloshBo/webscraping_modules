@@ -150,3 +150,13 @@ document = Document(source_stream)
 source_stream.close()
 target_stream = StringIO()
 document.save(target_stream)
+
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+document = Document()
+paragraph = document.add_paragraph()
+paragraph_format = paragraph.paragraph_format
+paragraph_format.alignment
+None # indicating alignment is inherited from the style hierarchy
+paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+paragraph_format.alignment
+CENTER (1)
