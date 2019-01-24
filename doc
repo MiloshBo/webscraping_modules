@@ -131,3 +131,22 @@ paragraph.add_run('text with emphasis.', 'Emphasis')
 paragraph = document.add_paragraph('Normal text, ')
 run = paragraph.add_run('text with emphasis.')
 run.style = 'Emphasis'
+
+
+from docx import Document
+# opening a document
+document = Document()
+document.save('test.docx')
+# really opening a document
+document = Document('existing-doc-file.docx')
+document.save('new-file-name.docx')
+# opening a file-like document
+f = open('foobar.doxc', 'rb')
+document = Document(f)
+f.close() # or
+with open('foobar.docx', 'rb') as f:
+	source_stream = StringIO(f.read())
+document = Document(source_stream)
+source_stream.close()
+target_stream = StringIO()
+document.save(target_stream)
