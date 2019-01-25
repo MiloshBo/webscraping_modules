@@ -192,3 +192,23 @@ tab_stop = tab_stops.add_tab_stop(Inches(1.5), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LE
 print(tab_stop.alignment)
 print(tab_stop.leader)
 tab_stops[0]
+
+
+paragraph_format.space_before = Pt(18)
+paragraph_format.space_before.pt
+paragraph_format.space_after = Pt(12)
+paragraph_format.space_after.pt
+
+from docx.shared import Length
+paragraph_format.line_spacing
+paragraph_format.line_spacing_rule
+paragraph_format.line_spacing = Pt(18)
+isinstance(paragraph_format.line_spacing, length)
+paragraph_format.line_spacing.pt
+line_format.line_spacing_rule
+EXACTLY (4)
+paragraph_format.line_spacing = 1.75
+paragraph_format.line_spacing
+1.75
+paragraph_format.line_spacing_rule
+MULTIPLE (5)
