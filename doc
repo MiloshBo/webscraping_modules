@@ -181,3 +181,14 @@ None
 paragraph_format.first_line_indent = Inches(-0.25)
 paragraph_format.first_line_indent
 paragraph_format.first_line_indent.inches
+
+tab_stops = paragraph_format.tab_stops
+tab_stop = tab_stops.add_tab_stop(Inches(1.5))
+tab_stop.position
+tab_stop.position.inches
+
+from docx.enum.text import WD_TAB_ALIGNMENT, WD_TAB_LEAD
+tab_stop = tab_stops.add_tab_stop(Inches(1.5), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
+print(tab_stop.alignment)
+print(tab_stop.leader)
+tab_stops[0]
