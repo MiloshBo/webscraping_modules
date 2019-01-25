@@ -160,3 +160,24 @@ None # indicating alignment is inherited from the style hierarchy
 paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
 paragraph_format.alignment
 CENTER (1)
+
+from docx.shared import Inches
+paragraph = document.add_paragraph()
+paragraph_format = paragraph.paragraph_format
+paragraph_format.left_indent
+None # Indicating indentation is inherited from the style hierarchy
+paragraph_format.left_indent = Inches(0.5)
+paragraph_format.left_indent
+paragraph_format.left_indent.inches
+
+from docx.shared import Pt
+paragraph_format.right_indent
+None
+paragraph_format.right_indent = Pt(24)
+paragraph_format.right_indent.pt
+
+paragraph_format.first_line_indent
+None
+paragraph_format.first_line_indent = Inches(-0.25)
+paragraph_format.first_line_indent
+paragraph_format.first_line_indent.inches
