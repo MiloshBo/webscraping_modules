@@ -231,3 +231,9 @@ font.underline
 None
 font.underline = True
 font.underline = WD_UNDERLINE.DOT_DASH
+
+from docx.shared import RGBColor
+font.color.rgb = RGBColor(0x42, 0x24, 0xE9)
+from docx.enum.dml import MSO_THEME_COLOR
+font.color.theme_color = MSO_THEME_COLOR.ACCENT_1
+font.color.rgb = None
