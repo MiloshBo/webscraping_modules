@@ -219,3 +219,15 @@ paragraph_format.keep_with_next = True
 True
 paragraph_format.keep_with_next
 paragraph_format.page_break_before = False
+
+)
+
+font.bold, font.italic
+(None, None)
+font.italic = True
+font.italic
+True
+font.underline
+None
+font.underline = True
+font.underline = WD_UNDERLINE.DOT_DASH
