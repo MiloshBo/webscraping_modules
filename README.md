@@ -28,6 +28,21 @@ lxml:
 https://lxml.de/tutorial.html
 http://stanford.edu/~mgorkove/cgi-bin/rpython_tutorials/webscraping_with_lxml.php
 
+csv:
+https://docs.python.org/3/library/csv.html
+https://automatetheboringstuff.com/chapter14/
+https://docs.python.org/3/library/io.html
+
+pdf:
+https://automatetheboringstuff.com/chapter13/
+https://pythonhosted.org/PyPDF2/index.html
+https://media.readthedocs.org/pdf/pdfminer-docs/latest/pdfminer-docs.pdf
+https://textract.readthedocs.io/en/latest/
+https://stackoverflow.com/questions/34837707/how-to-extract-text-from-a-pdf-file
+
+MS Word:
+https://automatetheboringstuff.com/chapter13/
+https://python-docx.readthedocs.io/en/latest/
 
 
 
