@@ -237,3 +237,37 @@ font.color.rgb = RGBColor(0x42, 0x24, 0xE9)
 from docx.enum.dml import MSO_THEME_COLOR
 font.color.theme_color = MSO_THEME_COLOR.ACCENT_1
 font.color.rgb = None
+
+document = Document()
+sections = document.sections
+len(sections)
+section = section[0]
+for section in sections:
+	print(section.start_type)
+current_section = document.sections[-1]   # Last section in document
+current_section.start_type
+NEW_PAGE (2)
+new_section = document.add_section(WD_SECTION.ODD_PAGE)
+new_section.start_type 
+ODD_PAGE (4)
+section.start_type
+NEW_PAGE (2)
+section.start_type = WD_SECTION.ODD_PAGE
+section.start_type
+ODD_PAGE (4)
+section.orientation, section.page_width, section.page_height
+(PORTRAIT (0), 7772400, 10058400)  # (Inches(8.5), Inches(11))
+new_width, new_height = section.page_height, section.page_width
+section.orientation = WD_ORIENT.LANDSCAPE
+section.page_width = new_width
+section.page_height = new_height
+section.orientation, section.page_width, section.page_height
+(LANDSCAPE (1), 10058400, 7772400)
+from docx.shared import Inches
+section.left_margin, section.right_margin
+section.top_margin, section.bottom_margin
+section.gutter
+section.header_distance, section.footer_distance
+section.left_margin = Inches(1.5)
+section.right_margin = Inches(1)
+section.left_margin, section.right_margin
