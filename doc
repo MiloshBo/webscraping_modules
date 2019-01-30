@@ -271,3 +271,26 @@ section.header_distance, section.footer_distance
 section.left_margin = Inches(1.5)
 section.right_margin = Inches(1)
 section.left_margin, section.right_margin
+
+document = Document()
+section = document.sections[0]
+header = section.header
+header.is_linked_to_previous
+paragraph = header.paragraphs[0]
+paragraph.text = "Title of my document"
+header.is_linked_to_previous
+from docx.enum.style import WD_STYLE_TYPE
+from docx.enum.text import WD_TAB_ALIGNMENT
+styles = document.styles
+style = styles.add_style("Header", WD_STYLE_TYPE.PARAGRAPH)
+style.base_style = styles["Normal"]
+tab_stops = style.paragraph_format.tab_stops 
+tab_stops.add_tab_stop(Inches(3.25), WD_TAB_ALIGNMENT.CENTER)
+tab_stops.add_tab_stop(Inches(6.5), WD_TAB_ALIGNMENT_PARAGRAPH.RIGHT)
+paragraph = header.paragraphs[0]
+paragraph.text = "Left Text\tCenter Text\tRight Text"
+paragraph.style = document.styles["Header"]
+header.is_linked_to_previous = True   # removing a header
+header.is_linked_to_previous
+True
+header.is_linked_to_previous = False
