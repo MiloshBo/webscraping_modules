@@ -294,3 +294,15 @@ header.is_linked_to_previous = True   # removing a header
 header.is_linked_to_previous
 True
 header.is_linked_to_previous = False
+
+
+document = Document()
+styles = document.styles
+styles['Normal']
+for docx.enum.style import WD_STYLE_TYPE
+styles = document.styles
+paragraph_styles = [
+    s for s in styles if s.type == WD_STYLE_TYPE_PARAGRAPH
+]
+for style in paragraph_styles:
+	print(style.name)
