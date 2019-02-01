@@ -1,5 +1,7 @@
 # https://automatetheboringstuff.com/chapter13/
 # https://python-docx.readthedocs.io/en/latest/
+# https://python-docx.readthedocs.io/en/latest/user/styles-using.html
+# https://python-docx.readthedocs.io/en/latest/api/document.html
 
 import docx
 
