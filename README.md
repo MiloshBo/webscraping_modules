@@ -45,8 +45,8 @@ https://automatetheboringstuff.com/chapter13/
 https://python-docx.readthedocs.io/en/latest/
 
 time:
-# https://automatetheboringstuff.com/chapter15/
-# https://docs.python.org/3/library/profile.html
+https://automatetheboringstuff.com/chapter15/
+https://docs.python.org/3/library/profile.html
 
 
 
