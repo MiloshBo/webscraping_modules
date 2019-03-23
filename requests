@@ -328,3 +328,42 @@ print(u)
 print(u.scheme)
 print(u.netloc)
 includeUrl = requests.utils.urlparse(includeUrl).scheme+"://"+requests.utils.urlparse(includeUrl).netloc
+
+
+# Forms and Logins
+import requests
+
+params = {"firstname": "Ryan", "lastname": "Mitchell"}
+r = requests.post("http://pythonscraping.com/pages/processing.php", data=params)
+print(r.text)
+
+params = {"email_addr": "miloshman2004@yahoo.com"}
+r = requests.post(
+    "http://post.oreilly.com/client/o/oreilly/forms/quicksignup.cgi", data=params
+)
+print(r.text)
+
+files = {'uploadFile': open(r'c:\Python36\kodovi\tiled.png', 'rb')}
+r = requests.post("http://pythonscraping.com/pages/processing2.php",
+files=files)
+print(r.text)
+
+params = {'username': 'Ryan', 'password': 'password'}
+r = requests.post("http://pythonscraping.com/pages/cookies/welcome.php", params)
+print("Cookie is set to:")
+print(r.cookies.get_dict())
+print("--------")
+print("Going to profile page...")
+r = requests.get("http://pythonscraping.com/pages/cookies/profile.php",
+cookies=r.cookies)
+#print(r.text)
+
+session = requests.Session()
+params = {'username': 'username', 'password': 'password'}
+s = session.post("http://pythonscraping.com/pages/cookies/welcome.php", params)
+print("Cookie is set to:")
+print(s.cookies.get_dict())
+print("-----------")
+print("Going to profile page...")
+s = session.get("http://pythonscraping.com/pages/cookies/profile.php")
+print(s.text)
