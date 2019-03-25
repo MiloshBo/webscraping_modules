@@ -349,3 +349,40 @@ for cookie in driver.get_cookies():
 	print(f'{cookie['name']}, {cookie['value']}')
 browser.delete_cookie("CookieName")
 browser.delete_all_cookies()
+
+
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+import time
+ #--| Setup
+options = Options()
+options.add_argument("--headless")
+caps = webdriver.DesiredCapabilities().FIREFOX
+caps["marionette"] = True
+browser = webdriver.Firefox(firefox_options=options, capabilities=caps, executable_path=r"geckodriver.exe")
+#--| Parse
+browser.get("http://pythonscraping.com/pages/javascript/ajaxDemo.html")
+time.sleep(3)
+print(browser.find_element_by_id("content").text)
+browser.close()
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC  
+import time
+options = Options()
+options.add_argument("--headless")
+caps = webdriver.DesiredCapabilities().FIREFOX
+caps["marionette"] = True
+browser = webdriver.Firefox(firefox_options=options, capabilities=caps, executable_path=r"geckodriver.exe")
+browser.get("http://pythonscraping.com/pages/javascript/ajaxDemo.html")
+try:
+	element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.ID, "loadedButton")))   # By.ID is Locator
+finally:
+	print(browser.find_element_by_id("content").text)
+	browser.close()
+
+# Locators Web Scraping with Python, R. Mitchell 155-156p.
+print(driver.find_element(By.ID, "content").text) # is equal to:
+print(driver.find_element_by_id("content").text)
