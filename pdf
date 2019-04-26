@@ -3,6 +3,7 @@
 # https://media.readthedocs.org/pdf/pdfminer-docs/latest/pdfminer-docs.pdf
 # https://textract.readthedocs.io/en/latest/
 # https://stackoverflow.com/questions/34837707/how-to-extract-text-from-a-pdf-fi
+https://diging.atlassian.net/wiki/spaces/DCH/pages/5275668/Tutorial+Text+Extraction+and+OCR+with+Tesseract+and+ImageMagick
 
 import PyPDF2
 
