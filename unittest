@@ -35,3 +35,10 @@ class TestWikipedia(unittest.TestCase):
 		
 if __name__ == '__main__':
 	unittest.main()
+
+
+# Selenium unit test
+driver = webdriver.Firefox()
+driver.get("http://en.wikipedia.org/wiki/Monty_Python")
+assert "Monty Python" in driver.title
+driver.close()
