@@ -414,3 +414,10 @@ browser = webdriver.Firefox(firefox_options=options, capabilities=caps, executab
 browser.get("http://pythonscraping.com/pages/javascript/redirectDemo1.html")
 waitForLoad(browser)
 print(browser.page_source)
+
+# actions Selenium can perform on any given element
+myElement.click()
+myElement.click_and_hold()
+myElement.release()
+myElement.double_click()
+myElement.send_keys_to_element("content to enter")
