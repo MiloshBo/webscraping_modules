@@ -672,3 +672,20 @@ content = bsObj.find("div", {"id": "mw-content-text"}).get_text()
 content = bytes(content, "UTF-8")
 content = content.decode("UTF-8")
 print(content)
+
+
+# scrape python events
+import requests
+from bs4 import BeautifulSoup
+
+def get_upcoming_events(url):
+    req = requests.get(url)
+    soup = BeautifulSoup(req.text, 'html.parser')
+    events = soup.find('ul', {'class': 'list-recent-events'}).findAll('li')	
+    for event in events:
+        event_details = dict()
+        event_details['name'] = event.find('h3').find("a").text
+        event_details['location'] = event.find('span', {'class', 'event-location'}).text
+        print(event_details)
+
+get_upcoming_events('https://www.python.org/events/python-events/')
