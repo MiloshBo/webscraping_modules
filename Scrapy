@@ -79,3 +79,16 @@ class QuotesSpider(scrapy.Spider):
             yield scrapy.Request(next_page, callback=self.parse)
 	    # alternatively for lines 20-21
 	    yield response.follow(next_page, callback=self.parse)
+
+
+# scrapy selectors
+from scrapy.selector import Selector
+import requests
+
+response = requests.get("http://stackoverflow.com/questions")
+selector = Selector(response)
+print(selector) 
+summaries = selector.xpath('//div[@class="summary"]/h3')
+print(summaries[0:5])
+[x.extract() for x in summaries.xpath('a[@class="questionhyperlink"]/
+text()')][:10]
