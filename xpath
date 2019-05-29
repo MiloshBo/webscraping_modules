@@ -47,3 +47,16 @@ tr[0], tr[0].xpath("./td[2]/text()")[0].strip()
 
 tr = tree.cssselect("tr[name='Pluto']")
 tr[0], tr[0].xpath("td[2]/text()")[0].strip()
+
+
+# scrapy selectors
+from scrapy.selector import Selector
+import requests
+
+response = requests.get("http://stackoverflow.com/questions")
+selector = Selector(response)
+print(selector) 
+summaries = selector.xpath('//div[@class="summary"]/h3')
+print(summaries[0:5])
+[x.extract() for x in summaries.xpath('a[@class="questionhyperlink"]/
+text()')][:10]
